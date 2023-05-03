@@ -53,7 +53,9 @@ function displayCartItems() {
     totalPrice += item.price * item.quantity;
   });
 
-  totalPriceElement.textContent = `Teljes összeg: ${totalPrice} Ft`;
+  totalPriceElement.innerHTML = `
+  <h2>Összesen:</h2>
+  <p>Teljes összeg: ${totalPrice} Ft</p>`;
 }
 
 displayCartItems();
