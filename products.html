@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gravírozás!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="A bolt logója">
+    </div>
+    <h1>Gravirizáció!!</h1>
+    <h3>Gondold ki, mi elkészítjük!</h3>
+    <nav>
+      <a href="index.html">Főoldal</a>
+      <a href="products.html">Termékek</a>
+      <a href="basket.html">Kosár</a>
+      <a href="contact.html">Elérhetőségek</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Termékek</h2>
+    <div class="filters">
+      <label for="sort">Rendezés:</label>
+      <select id="sort">
+        <option value="newest">Új termékek</option>
+        <option value="price-asc">Ár szerint növekvő</option>
+        <option value="price-desc">Ár szerint csökkenő</option>
+      </select>
+      <label for="categories">Kategóriák:</label>
+      <select id="categories">
+        <option value="all">Összes</option>
+        <option value="lamps">Lámpák</option>
+        <option value="events">Események</option>
+        <option value="other-souvenirs">Egyéb ajándéktárgyak</option>
+        <option value="for-her">Kedvesemnek</option>
+        <option value="hobby-items">Hobbi tárgyak</option>
+      </select>
+    </div>
+
+    <section id="products">
+      <div class="lamp">
+        <h2>Lámpa</h2>
+        <div class="items">
+          <div data-id="lamp-1">
+            <img src="images/lampa.jpg" alt="Lámpa 1">
+            <p>kék</p>
+            <p>Ár: 2300 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div data-id="lamp-2">
+            <img src="images/lampa.jpg" alt="Lámpa 2">
+            <p>sarga</p>
+            <p>Ár: 1500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div data-id="lamp-3">
+            <img src="images/lampa.jpg" alt="Lámpa 3">
+            <p>Turt</p>
+            <p>Ár: 3700 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div data-id="lamp-3">
+            <img src="images/lampa.jpg" alt="Lámpa 4">
+            <p>hola</p>
+            <p>Ár: 500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="event">
+        <h2>Események</h2>
+        <div class="items">
+          <div data-id="event-1">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>kajj</p>
+            <p>Ár: 3555 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="event-2">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>ret</p>
+            <p>Ár: 1800 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="event-3">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>yux</p>
+            <p>Ár: 320 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="event-4">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>uht</p>
+            <p>Ár: 430 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="event-5">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>ill</p>
+            <p>Ár: 770 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="event-6">
+            <img src="images/sitcard.jpeg" alt="Ültető kártya">
+            <p>geg</p>
+            <p>Ár: 590 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="other-souvenirs">
+        <h2>Egyéb ajándék tárgyak</h2>
+        <div class="items">
+          <div data-id="product-1">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 1</p>
+            <p>Ár: 2000 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="product-2">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 2</p>
+            <p>Ár: 1500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="product-3">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 3</p>
+            <p>Ár: 2500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="product-4">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 4</p>
+            <p>Ár: 1800 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="product-5">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 5</p>
+            <p>Ár: 3000 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="product-6">
+            <img src="images/other.jpeg" alt="Egyéb tárgy">
+            <p>Item 6</p>
+            <p>Ár: 2200 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="for-her">
+        <h2>Kedvesemnek</h2>
+        <div class="items">
+          <div data-id="for-1">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 1</p>
+            <p>Ár: 2000 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="for-2">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 2</p>
+            <p>Ár: 1500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="for-3">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 3</p>
+            <p>Ár: 2500 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="for-4">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 4</p>
+            <p>Ár: 1800 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="for-5">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 5</p>
+            <p>Ár: 3000 Ft</p>
+            <button>Kosárba</button>
+          </div>
+      
+          <div data-id="for-6">
+            <img src="images/love.jpg" alt="Egyéb tárgy">
+            <p>kedvesemnek 6</p>
+            <p>Ár: 2200 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+      
+      
+
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
