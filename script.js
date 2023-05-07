@@ -4,14 +4,49 @@ document.addEventListener('DOMContentLoaded', function () {
   sideMenu.classList.add('side-menu');
 
   // Hozzáadja a menüpontokat a sideMenu-hez
-  sideMenu.innerHTML += '<h2>Menü</h2>'
+  sideMenu.innerHTML += '<h1>Menü</h1>';
+
   const menuItems = document.querySelectorAll('h2');
-  menuItems.forEach((item) => {
-    const menuItem = document.createElement('div');
+  const fragment = new DocumentFragment();
+
+  menuItems.forEach((item, index) => {
+    const menuItem = document.createElement('a');
     menuItem.innerHTML = item.innerHTML;
-    sideMenu.appendChild(menuItem);
+    menuItem.href = `#section${index}`;
+    menuItem.addEventListener('click', function (event) {
+      event.preventDefault();
+      sideMenu.classList.remove('active');
+      console.log('running');
+  
+      const section = document.getElementById(`section${index}`);
+      const headerHeight = 80; // Állítsd be a fejléc magasságát (pl. 50 pixel)
+  
+      // Görgetés a szakaszhoz a képernyő tetejétől kivonva a fejléc magasságát
+      window.scrollTo({
+        top: section.offsetTop - headerHeight,
+        behavior: 'smooth'
+      });
+    });
+  
+    fragment.appendChild(menuItem);
+  
+    const hr = document.createElement('hr');
+    fragment.appendChild(hr);
   });
-  sideMenu.innerHTML += '<button>Egyéni tervezés elkezdése</button>'
+  
+  sideMenu.appendChild(fragment);
+  
+  
+  sideMenu.addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
+      event.preventDefault();
+    }
+  });
+  
+  
+  
+
+ 
 
   document.body.appendChild(sideMenu);
 
@@ -20,21 +55,25 @@ document.addEventListener('DOMContentLoaded', function () {
       sideMenu.classList.toggle('active');
     }
   });
+  
+
 
   const cartToggle = document.getElementById('cart-toggle');
   const cartContainer = document.createElement('div');
   cartContainer.classList.add('cart-side');
 
+  
 
   cartContainer.innerHTML = `
   <h2>Kosár tartalma</h2>
+  <div id="cart-container"></div>
   <p id="total-price">Teljes összeg: 0 Ft</p>
   <button onclick="emptyCart()">Kosár tartalmának kiürítése</button>
-  <div id="cart-container"></div>
-
+  <button onclick="send()">Rendelés továbbítása</button>
   
 `;
 
+ 
 
   document.body.appendChild(cartContainer);
 
@@ -97,15 +136,21 @@ document.addEventListener('DOMContentLoaded', function () {
       totalPrice += product.price * product.quantity;
   
       const cartItem = document.createElement('div');
+      cartItem.classList.add('cartItem');
   
       cartItem.innerHTML = `
-        <img src="${product.imgSrc}" alt="${product.name}">
-        <img src="images/x.png" class="remove-icon" data-id="${productId}">
+      <img src="${product.imgSrc}" alt="${product.name}">
+      <img src="images/x.png" class="remove-icon" data-id="${productId}">
+      <div>
         <p>${product.name}</p>
         <p>Ár: ${product.price} Ft</p>
-        <input type="number" value="${product.quantity}" min="1" class="quantity-input" data-id="${productId}">
-        <textarea class="comment-input" data-id="${productId}">
-      `;
+        <p><input type="number" value="${product.quantity}" min="1" class="quantity-input" data-id="${productId}">db</p>
+      </div>
+      <div id="comment">
+        <p>Megjegyzés:</p>
+        <textarea class="comment-input" data-id="${productId}"></textarea>
+      </div>
+    `;
   
       cartContainer.appendChild(cartItem);
     }
@@ -154,10 +199,4 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
   
-
 });
-
-
-
-
-

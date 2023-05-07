@@ -5,17 +5,22 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 11px;
+  font-size: 10px;
   }
 
-  body, .cart-side, .side-menu {
+  body {
   background-color: #ffe0bd;
+  }
+
+  .cart-side, .side-menu {
+    background-color: #fcecd9;
+    border-radius: 1rem;
   }
   footer, header, #holder, button {
     background-color:#342c25 ;
   } 
 
-.side-menu, .cart-side, .cart-side div div, .img-container {
+.side-menu, .cart-side, .cart-side>div>div, .img-container {
     border: 3px solid #342c25;
   } 
 #holder p, header h1, header p, i  {
@@ -68,37 +73,61 @@
   
   /* Menü stílusok */
   .side-menu {
-  position: fixed;
-  top: 70px;
-  left: -300px;
-  height: 100%;
-  width: 250px;
-  overflow-y: auto;
-  transition: left .5s;
-  padding: 1rem;
-  z-index: 10;
+    position: fixed;
+    top: 60px;
+    left: -300px;
+    max-height: calc(100vh - 60px);    
+    width: 75vw;
+    overflow-y: auto;
+    transition: left .5s;
+    padding: 1rem;
+    z-index: 10;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
   }
   
   .side-menu.active {
-  left: 0;
+    left: 0;
   }
   
-  .side-menu h2 {
-  margin-bottom: 1rem;
+  .side-menu h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
   }
   
+  .side-menu a {
+    display: block;
+    color: #495057;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .side-menu a:hover {
+    color: #212529;
+  }
+  
+  .side-menu hr {
+    border-top: 1px solid #342c25 ;
+    margin-bottom: 0.5rem;
+  }
+  
+
+
+
+
   /* Kosár stílusok */
   .cart-side {
-  position: fixed;
-  top: 70px;
-  right: -100vw;
-  height: 100vh;
-  width: 65vw;
-  overflow-y: auto;
-  transition: right .5s;
-  padding: 1rem;
-  z-index: 10;
+    position: fixed;
+    top: 60px;
+    right: -100vw;
+    max-height: calc(100vh - 60px);
+    width: 75vw;
+    overflow-y: auto;
+    transition: right .5s;
+    padding: 1rem;
+    z-index: 10;
   }
+  
   
   .cart-side.active {
   right: 0;
@@ -109,7 +138,7 @@
   font-size: 2rem;
   }
   
-  .cart-side div {
+  .cart-side>div {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -119,12 +148,26 @@
   margin-top: 1rem;
   }
 
-  .cart-side div div {
-    border-radius: 5px;
+ .cartItem {
+  position: relative; /* Add this line */
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+  .cartItem #comment {
+    grid-row: 2/3;
+    grid-column: 1/3;
+  }
+  textarea {
+    width: 100%;
   }
   
   .cart-side img {
-  width: 50%;
+  width: 100%;
   height: auto;
   border-radius: .2rem;
   }
@@ -134,15 +177,15 @@
   height: auto;
   cursor: pointer;
   position: absolute;
-  top: -6px;
-  right: -6px;
+  top: 1px;
+  right: 1px;
   background-color: white;
   border-radius: 50%;
   }
   
   .cart-side p {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   }
   
   .cart-side input[type="number"] {
@@ -156,6 +199,10 @@
 
   
   
+
+
+
+
   h2 {
   font-size: 1.6rem;
   margin: 1.5rem;
