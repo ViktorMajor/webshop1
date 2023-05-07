@@ -6,41 +6,154 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gravirizáció! </title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css">
+
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="logo.png" alt="A bolt logója">
-    </div>
+    <p><i class="fi-align-justify" id="menu-toggle"></i>Menü</p>
     <h1>Gravirizáció! </h1>
-    <h3>Gondold ki, én elkészítem!</h3>
     <nav>
-      <a href="index.html">Főoldal</a>
-      <a href="products.html">Termékek</a>
-      <a href="basket.html">Kosár</a>
-      <a href="contact.html">Elérhetőségek</a>
-      
+      <p id="cart-toggle"><i class="fi-shopping-cart"></i> Kosár</p>
     </nav>
   </header>
   <main>
-    <div id="home">
-      <p>Üdvözöljük webshopunkban, ahol a gravírozás művészetét ünneplik a tárgyak! 
-        A szenvedélyünk az egyedi és lenyűgöző gravírozott tárgyak létrehozása, 
-        amelyek tökéletes ajándékok lehetnek vagy akár saját otthonunk díszei. 
-        Bármilyen kérést szívesen megvalósítunk, legyen szó egyedi mintákról, 
-        személyre szabott üzenetekről, vagy bármilyen más ötlet, amit el tud képzelni.
-        Cégünk kínálatában számos különleges gravírozott tárgyat találhat, többek között 
-        lámpákat, kulcstartókat, esküvői ültető kártyákat, ajándékdobozokat és sok mást. 
-        Mindegyik termékünk a legnagyobb gondossággal és odaadással készül, 
-        hogy az Ön elképzeléseit a lehető legjobban megvalósíthassuk.
+    <img src="images/wedding8.jpeg" alt="nyitókép">
+    <div id="holder">
+      <p><i class="fi-lightbulb"></i>Egyéni tervek megvalósítása</p>
+      <p><i class="fi-ticket"></i>Személyre szabott kedvezmények</p>
+    </div>
+    <div id="categories">
+      <div>
+        <h2>Esküvő</h2>
+        <div class="product-container">
+          <div id="img-c1" class="img-container">
+            <img src="images/wedding1.jpeg" alt="">
+            <p>Dísz</p>
+            <p>Ár: 1200 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div id="img-c2" class="img-container">          
+            <img src="images/wedding2.jpeg" alt="">
+            <p>Köszöntő kártya</p>
+            <p>Ár: 2300 Ft</p>
+            <button>Kosárba</button>
 
-        Böngéssze végig webshopunkat, és fedezze fel a lenyűgöző gravírozott tárgyaink 
-        széles választékát. Ha pedig saját elképzelése van, ne habozzon kapcsolatba lépni velünk! 
-        Büszkék vagyunk arra, hogy egyedi és maradandó emlékeket készíthetünk Önnek és szeretteinek.
+          </div>
+          <div id="img-c3" class="img-container">          
+            <img src="images/wedding3.png" alt="">
+            <p>Köszöntő kártya </p>
+            <p>Ár: 1300 Ft</p>
+            <button>Kosárba</button>
 
-        Kellemes vásárlást kívánunk!</p>
-        <a href="products.html">Tovább a termékekre!</a>
+          </div>
+          <div id="img-c4" class="img-container">          
+            <img src="images/wedding4.jpeg" alt="">
+            <p>Ajándék doboz</p>
+            <p>Ár: 260 Ft</p>
+            <button>Kosárba</button>
+
+          </div>
+          <div id="img-c5" class="img-container">          
+            <img src="images/wedding5.jpeg" alt="">
+            <p>Ültető kártya</p>
+            <p>Ár: 330 Ft</p>
+            <button>Kosárba</button>
+
+          </div>
+          <div id="img-c6" class="img-container">          
+            <img src="images/wedding6.jpeg" alt="">
+            <p>Köszönő ajándék</p>
+            <p>Ár: 550 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Kedvesemnek</h2>
+        <div class="product-container">
+          <div id="img-c1" class="img-container">
+            <img src="images/forher1.jpeg" alt="">
+            <p>Dísz</p>
+            <p>Ár: 1200 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div id="img-c2" class="img-container">          
+            <img src="images/forher2.jpeg" alt="">
+            <p>Köszöntő kártya</p>
+            <p>Ár: 2300 Ft</p>
+            <button>Kosárba</button>
+
+          </div>
+          <div id="img-c3" class="img-container">          
+            <img src="images/forher3.jpeg" alt="">
+            <p>Köszöntő kártya </p>
+            <p>Ár: 1300 Ft</p>
+            <button>Kosárba</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>Egyéb ajándékok</h2>
+        <div class="product-container">
+          <div id="img-c1" class="img-container">
+            <img src="images/other1.jpeg" alt="">
+            <p>Dísz</p>
+            <p>Ár: 1200 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div id="img-c2" class="img-container">          
+            <img src="images/other2.jpeg" alt="">
+            <p>Köszöntő kártya</p>
+            <p>Ár: 2300 Ft</p>
+            <button>Kosárba</button>
+
+          </div>
+          <div id="img-c3" class="img-container">          
+            <img src="images/other3.jpeg" alt="">
+            <p>Köszöntő kártya </p>
+            <p>Ár: 1300 Ft</p>
+            <button>Kosárba</button>
+          </div>
+          <div id="img-c4" class="img-container">          
+            <img src="images/other4.jpeg" alt="">
+            <p>Köszöntő kártya </p>
+            <p>Ár: 1300 Ft</p>
+            <button>Kosárba</button>
+          </div>
+       
+        </div>
+      </div>
+    </div>
+    <div id="popular products">
+
     </div>
   </main>
+  <footer>
+    <footer>
+  <div id="about-me">
+    <div>
+      <img src="images/craft.svg" alt="Kézműves termék">
+      <p>Kézműves termék</p>
+      <p>A kézműves termékeink garantálják a kiváló minőséget és egyediséget.</p>
+    </div>
+    <div>
+      <img src="images/small_business.svg" alt="Hazai kisvállalkozás">
+      <p>Hazai kisvállalkozás</p>
+      <p>Támogasd a hazai kisvállalkozásokat és légy részese a helyi gazdaság fejlődésének!</p>
+    </div>
+  </div>
+  <!-- További részek -->
+</footer>
+
+    <div id="contact">
+      <h3>Vedd fel velünk a kapcsolatot!</h3>
+      <p>Email: info@kismuvesbolt.hu</p>
+      <p>Telefon: +36 30 123 4567</p>
+    </div>
+    
+  </footer>
+  
+  <script src="script.js"></script>
 </body>
 </html>

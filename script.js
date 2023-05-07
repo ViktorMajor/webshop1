@@ -1,3 +1,76 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const menuToggle = document.getElementById('menu-toggle');
+  const sideMenu = document.createElement('div');
+  sideMenu.classList.add('side-menu');
+
+  // Hozzáadja a menüpontokat a sideMenu-hez
+  sideMenu.innerHTML += '<h2>Menü</h2>'
+  const menuItems = document.querySelectorAll('h2');
+  menuItems.forEach((item) => {
+    const menuItem = document.createElement('div');
+    menuItem.innerHTML = item.innerHTML;
+    sideMenu.appendChild(menuItem);
+  });
+  sideMenu.innerHTML += '<button>Egyéni tervezés elkezdése</button>'
+
+  document.body.appendChild(sideMenu);
+
+  menuToggle.addEventListener('click', function () {
+    if (!cartContainer.classList.contains('active')) {
+      sideMenu.classList.toggle('active');
+    }
+  });
+
+  const cartToggle = document.getElementById('cart-toggle');
+  const cartContainer = document.createElement('div');
+  cartContainer.classList.add('cart-container');
+
+  // Ide jöhetnek a kosár tartalmával kapcsolatos kódok
+  cartContainer.innerHTML = '<h2>Kosár tartalma</h2>';
+
+  document.body.appendChild(cartContainer);
+
+  cartToggle.addEventListener('click', function () {
+    if (!sideMenu.classList.contains('active')) {
+      cartContainer.classList.toggle('active');
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const productContainers = document.querySelectorAll(".product-container");
+
+  productContainers.forEach((productContainer) => {
+    const products = productContainer.querySelectorAll(".img-container");
+
+    productContainer.addEventListener("scroll", function() {
+      const containerRect = productContainer.getBoundingClientRect();
+
+      products.forEach((product) => {
+        const productRect = product.getBoundingClientRect();
+
+        // ellenőrizze, hogy az elem vízszintesen középen van-e a termék konténeren belül
+        const isCentered = productRect.left >= containerRect.left &&
+          productRect.right <= containerRect.right;
+
+        if (isCentered) {
+          product.classList.add("zoomed");
+        } else {
+          product.classList.remove("zoomed");
+        }
+      });
+    });
+  });
+});
+
+
+
+
+
+
+
+/*
+ sideMenu.innerHTML += '<a><h2>Egyéni tervezés elkezdése</h2></a>'
 const addToCartButtons = document.querySelectorAll('button');
 
 addToCartButtons.forEach(button => {
@@ -67,4 +140,4 @@ function deleteCartItems() {
   const totalPriceElement = document.querySelector('#total-price');
   totalPriceElement.textContent = 'Teljes összeg: 0 Ft';
 }
-
+*/
