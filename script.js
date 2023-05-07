@@ -23,10 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const cartToggle = document.getElementById('cart-toggle');
   const cartContainer = document.createElement('div');
-  cartContainer.classList.add('cart-container');
+  cartContainer.classList.add('cart-side');
 
-  // Ide jöhetnek a kosár tartalmával kapcsolatos kódok
-  cartContainer.innerHTML = '<h2>Kosár tartalma</h2>';
+
+  cartContainer.innerHTML = `
+  <h2>Kosár tartalma</h2>
+  <p id="total-price">Teljes összeg: 0 Ft</p>
+  <button onclick="emptyCart()">Kosár tartalmának kiürítése</button>
+  <div id="cart-container"></div>
+
+  
+`;
+
 
   document.body.appendChild(cartContainer);
 
@@ -35,9 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
       cartContainer.classList.toggle('active');
     }
   });
-});
 
-document.addEventListener("DOMContentLoaded", function() {
   const productContainers = document.querySelectorAll(".product-container");
 
   productContainers.forEach((productContainer) => {
@@ -61,83 +67,97 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
-});
 
+  const cart = {};
 
-
-
-
-
-
-/*
- sideMenu.innerHTML += '<a><h2>Egyéni tervezés elkezdése</h2></a>'
-const addToCartButtons = document.querySelectorAll('button');
-
-addToCartButtons.forEach(button => {
-  button.addEventListener('click', addToCart);
-});
-
-function addToCart(event) {
-  const product = event.target.parentElement;
-  const id = product.getAttribute('data-id');
-  const name = product.querySelector('p').textContent;
-  const price = parseFloat(product.querySelector('p:nth-child(3)').textContent.split(' ')[1]);
-
-  const cartItem = {
-    id,
-    name,
-    price
+  const addToCart = (product) => {
+    const { id, imgSrc, name, price } = product;
+    if (cart[id]) {
+      cart[id].quantity++;
+    } else {
+      cart[id] = { ...product, quantity: 1 };
+    }
+    renderCart();
   };
 
-  addCartItemToStorage(cartItem);
-}
+  const removeFromCart = (id) => {
+    delete cart[id];
+    renderCart();
+  };
+  
+  const renderCart = () => {
+    console.log(cart)
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.innerHTML = '';
+  
+    let totalPrice = 0;
+  
+    for (const productId in cart) {
+      const product = cart[productId];
+      totalPrice += product.price * product.quantity;
+  
+      const cartItem = document.createElement('div');
+  
+      cartItem.innerHTML = `
+        <img src="${product.imgSrc}" alt="${product.name}">
+        <img src="images/x.png" class="remove-icon" data-id="${productId}">
+        <p>${product.name}</p>
+        <p>Ár: ${product.price} Ft</p>
+        <input type="number" value="${product.quantity}" min="1" class="quantity-input" data-id="${productId}">
+        <textarea class="comment-input" data-id="${productId}">
+      `;
+  
+      cartContainer.appendChild(cartItem);
+    }
+  
+    document.getElementById('total-price').innerText = `Teljes összeg: ${totalPrice} Ft`;
+  
+    const removeIcons = document.querySelectorAll('.remove-icon');
+    removeIcons.forEach((removeIcon) => {
+      removeIcon.addEventListener('click', () => {
+        const id = removeIcon.dataset.id;
+        removeFromCart(id);
+      });
+    });
+  
+    const quantityInputs = document.querySelectorAll('.quantity-input');
+    quantityInputs.forEach((quantityInput) => {
+      quantityInput.addEventListener('change', () => {
+        const id = quantityInput.dataset.id;
+        const newQuantity = parseInt(quantityInput.value);
+        cart[id].quantity = newQuantity;
+        renderCart();
+      });
+    });
+  };
+  
 
-function addCartItemToStorage(cartItem) {
-  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const emptyCart = () => {
+    for (const productId in cart) {
+      delete cart[productId];
+    }
+    renderCart();
+  };
 
-  const itemExists = cartItems.find(item => item.id === cartItem.id);
+  window.emptyCart = emptyCart;
 
-  if (itemExists) {
-    itemExists.quantity++;
-  } else {
-    cartItem.quantity = 1;
-    cartItems.push(cartItem);
-  }
-
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-}
-
-function displayCartItems() {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const cartItemsContainer = document.querySelector('#cart-items-container');
-  const totalPriceElement = document.querySelector('#total-price');
-  let totalPrice = 0;
-
-  cartItems.forEach(item => {
-    const cartItem = document.createElement('div');
-    cartItem.innerHTML = `
-      <h2>${item.name}</h2>
-      <p>Ár: ${item.price} Ft</p>
-      <p>Mennyiség: ${item.quantity} db</p>
-    `;
-
-    cartItemsContainer.appendChild(cartItem);
-
-    totalPrice += item.price * item.quantity;
+  const cartButtons = document.querySelectorAll('.cart-button');
+  cartButtons.forEach((cartButton, index) => {
+    cartButton.addEventListener('click', () => {
+      const product = cartButton.parentElement;
+      const id = product.id;
+      const imgSrc = product.querySelector('img').src;
+      const name = product.querySelector('p:nth-of-type(1)').innerText;
+      const price = parseInt(product.querySelector('p:nth-of-type(2)').innerText.split(' ')[1]);
+      
+      addToCart({ id, imgSrc, name, price });
+    });
   });
+  
 
-  totalPriceElement.innerHTML = `
-  <h2>Összesen:</h2>
-  <p>Teljes összeg: ${totalPrice} Ft</p>`;
-}
+});
 
-displayCartItems();
 
-function deleteCartItems() {
-  localStorage.removeItem('cartItems');
-  const cartItemsContainer = document.querySelector('#cart-items-container');
-  cartItemsContainer.innerHTML = '';
-  const totalPriceElement = document.querySelector('#total-price');
-  totalPriceElement.textContent = 'Teljes összeg: 0 Ft';
-}
-*/
+
+
+
