@@ -117,11 +117,13 @@ document.addEventListener('DOMContentLoaded', function () {
       cart[id] = { ...product, quantity: 1 };
     }
     renderCart();
+    updateCartCount();
   };
 
   const removeFromCart = (id) => {
     delete cart[id];
     renderCart();
+    updateCartCount();
   };
   
   const renderCart = () => {
@@ -172,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const newQuantity = parseInt(quantityInput.value);
         cart[id].quantity = newQuantity;
         renderCart();
+        updateCartCount();
       });
     });
   };
@@ -182,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
       delete cart[productId];
     }
     renderCart();
+    updateCartCount();
   };
 
   window.emptyCart = emptyCart;
@@ -198,5 +202,17 @@ document.addEventListener('DOMContentLoaded', function () {
       addToCart({ id, imgSrc, name, price });
     });
   });
+  const updateCartCount = () => {
+    const cartCount = document.getElementById('cart-count');
+    let totalQuantity = 0;
+  
+    for (const productId in cart) {
+      totalQuantity += cart[productId].quantity;
+    }
+  
+    cartCount.innerText = totalQuantity;
+  };
+  
   
 });
+
