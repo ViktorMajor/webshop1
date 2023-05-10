@@ -94,6 +94,27 @@ document.addEventListener('DOMContentLoaded', function () {
       cartContainer.classList.toggle('active');
     }
   });
+
+  document.addEventListener('click', function(event) {
+    const isClickInsideMenu = sideMenu.contains(event.target);
+    const isClickInsideMenuToggle = menuToggle.contains(event.target);
+    const isClickInsideCart = cartContainer.contains(event.target);
+    const isClickInsideCartToggle = cartToggle.contains(event.target);
+    
+    const isEmptyCartButton = event.target.matches('button');
+    const isSendButton = event.target.matches('button');
+  
+    if (!isClickInsideMenu && !isClickInsideMenuToggle && sideMenu.classList.contains('active')) {
+      sideMenu.classList.remove('active');
+    }
+  
+    if (!isClickInsideCart && !isClickInsideCartToggle && !isEmptyCartButton && !isSendButton && cartContainer.classList.contains('active')) {
+      cartContainer.classList.remove('active');
+    }
+  });
+  
+  
+  
   
 
   const productContainers = document.querySelectorAll(".product-container");
@@ -127,11 +148,12 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cart[id]) {
       cart[id].quantity++;
     } else {
-      cart[id] = { ...product, quantity: 1 };
+      cart[id] = { ...product, quantity: 1, comment: "" }; // Add 'comment' property here
     }
     renderCart();
     updateCartCount();
   };
+  
 
   const removeFromCart = (id) => {
     delete cart[id];
@@ -156,15 +178,15 @@ document.addEventListener('DOMContentLoaded', function () {
       cartItem.innerHTML = `
       <img src="${product.imgSrc}" alt="${product.name}">
       <img src="images/x.png" class="remove-icon" data-id="${productId}">
-      <div>
+      <div id="text-container">
         <p>${product.name}</p>
         <p>Ár: ${product.price} Ft</p>
         <p><input type="number" value="${product.quantity}" min="1" class="quantity-input" data-id="${productId}">db</p>
       </div>
       <div id="comment">
         <p>Megjegyzés:</p>
-        <textarea class="comment-input" data-id="${productId}"></textarea>
-      </div>
+        <textarea class="comment-input" data-id="${productId}">${product.comment}</textarea>
+        </div>
     `;
   
       cartContainer.appendChild(cartItem);
@@ -188,6 +210,16 @@ document.addEventListener('DOMContentLoaded', function () {
         cart[id].quantity = newQuantity;
         renderCart();
         updateCartCount();
+      });
+    });
+    
+    // Here is the newly added code
+    const commentInputs = document.querySelectorAll('.comment-input');
+    commentInputs.forEach((commentInput) => {
+      commentInput.addEventListener('input', () => {
+        const id = commentInput.dataset.id;
+        const newComment = commentInput.value;
+        cart[id].comment = newComment;
       });
     });
   };
@@ -226,6 +258,14 @@ document.addEventListener('DOMContentLoaded', function () {
     cartCount.innerText = totalQuantity;
   };
   
-  
+  const commentInputs = document.querySelectorAll('.comment-input');
+  commentInputs.forEach((commentInput) => {
+    commentInput.addEventListener('input', () => {
+      const id = commentInput.dataset.id;
+      const newComment = commentInput.value;
+      cart[id].comment = newComment;
+    });
+  });
+
 });
 

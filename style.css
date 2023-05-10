@@ -37,7 +37,7 @@ button {
 .side-menu {
   width: 150px;
   left: -100vw;
-  transition: left .9s;
+  transition: left .4s;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -48,7 +48,7 @@ button {
 .cart-side {
   width: 75vw;
   right: -100vw;
-  transition: right .9s;
+  transition: right .5s;
   box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -81,8 +81,6 @@ button {
   border-radius: 5px;
   border: 2px solid #ffe0bd;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 1rem;
   margin: 1rem 0;
   padding: .5rem;
@@ -169,14 +167,17 @@ header .fi-align-justify {
   height: auto;
   border-radius: .2rem;
   }
+  .cart-side #text-container {
+    margin-right: 1rem;
+  }
   
   .cart-side .remove-icon {
   width: 3rem;
   height: auto;
   cursor: pointer;
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: -1px;
+  right: -1px;
   background-color: white;
   border-radius: 50%;
   }
@@ -186,7 +187,7 @@ header .fi-align-justify {
   font-size: 1.8rem;
   }
   #cart-count {
-    background-color: red; 
+    background-color: orangered; 
     color: white; 
     border-radius: 50%; 
     padding: 2px 6px; 
@@ -210,9 +211,11 @@ header .fi-align-justify {
   
   .product-container {
     display: flex;
-    overflow-x: auto;
-    max-width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden; /* Tiltja a függőleges görgetést */
+    width: 100%;
   }
+  
   
   .product-container img {
     width: 40vw;
@@ -222,7 +225,7 @@ header .fi-align-justify {
   }
   
   .img-container {
-    margin: 2.6rem 1rem;
+    margin: 1.5rem 1.5rem;
     border-radius: 1rem;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -249,18 +252,19 @@ header .fi-align-justify {
   button {
     padding: 1rem;
     height: 3rem;
+    line-height: 1rem; /* Add this line */
     font-size: 1.4rem;
     border-radius: 1rem;
     margin: .5rem;
-    border: none;
+    border: 2px solid orangered;
     text-align: center;
-    justify-content: center;
     transition: all 0.3s ease;
     cursor: pointer;
     outline: none;
     position: relative;
     overflow: hidden;
   }
+  
   
   button:after {
     content: "";
@@ -351,14 +355,16 @@ footer {
  
   
   #holder {
+    top: -5px;
     margin: 0;
-    height: 4rem;
+    height: 6rem;
     position: relative;
     overflow: hidden;
   }
   
   #holder p {
     color: #ffe0bd;
+    font-size: 2rem;
     position: absolute;
     top: 1rem;
     left: 0;
@@ -382,7 +388,7 @@ footer {
       opacity: 0;
     }
     20%, 40% {
-      left: 30%;
+      left: 10%;
       opacity: 1;
     }
     50%, 100% {
@@ -397,7 +403,7 @@ footer {
       opacity: 0;
     }
     60%, 80% {
-      left: 30%;
+      left: 10%;
       opacity: 1;
     }
     90%, 100% {
@@ -433,10 +439,6 @@ footer {
     height: 25vw;
     object-fit: cover;
     border-radius: 0.5rem;
-  }
-  .img-container {
-    margin: 2.6rem 1.5rem;
-
   }
   .cart-side {
     width: 60vw;
