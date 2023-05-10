@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('running');
   
       const section = document.getElementById(`section${index}`);
-      const headerHeight = 80; // Állítsd be a fejléc magasságát (pl. 50 pixel)
+      const headerHeight = 130; // Állítsd be a fejléc magasságát (pl. 50 pixel)
   
       // Görgetés a szakaszhoz a képernyő tetejétől kivonva a fejléc magasságát
       window.scrollTo({
