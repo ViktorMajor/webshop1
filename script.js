@@ -50,11 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.body.appendChild(sideMenu);
 
-  menuToggle.addEventListener('click', function () {
-    if (!cartContainer.classList.contains('active')) {
-      sideMenu.classList.toggle('active');
-    }
-  });
+ 
   
 
 
@@ -77,11 +73,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.body.appendChild(cartContainer);
 
+  menuToggle.addEventListener('click', function () {
+    if (cartContainer.classList.contains('active')) {
+      cartContainer.classList.remove('active');
+      setTimeout(function() {
+        sideMenu.classList.toggle('active');
+      }, 100); // Az animáció időtartama alatt szükséges késleltetés. Állítsa be a tényleges animáció időtartamához.
+    } else {
+      sideMenu.classList.toggle('active');
+    }
+  });
+  
   cartToggle.addEventListener('click', function () {
-    if (!sideMenu.classList.contains('active')) {
+    if (sideMenu.classList.contains('active')) {
+      sideMenu.classList.remove('active');
+      setTimeout(function() {
+        cartContainer.classList.toggle('active');
+      }, 100); // Az animáció időtartama alatt szükséges késleltetés. Állítsa be a tényleges animáció időtartamához.
+    } else {
       cartContainer.classList.toggle('active');
     }
   });
+  
 
   const productContainers = document.querySelectorAll(".product-container");
 
