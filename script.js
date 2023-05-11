@@ -95,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+ 
+
   document.addEventListener('click', function(event) {
     const isClickInsideMenu = sideMenu.contains(event.target);
     const isClickInsideMenuToggle = menuToggle.contains(event.target);
@@ -103,15 +105,18 @@ document.addEventListener('DOMContentLoaded', function () {
     
     const isEmptyCartButton = event.target.matches('button');
     const isSendButton = event.target.matches('button');
+    const isRemoveIcon = event.target.matches('.remove-icon'); // Check if clicked on remove-icon
   
     if (!isClickInsideMenu && !isClickInsideMenuToggle && sideMenu.classList.contains('active')) {
       sideMenu.classList.remove('active');
     }
   
-    if (!isClickInsideCart && !isClickInsideCartToggle && !isEmptyCartButton && !isSendButton && cartContainer.classList.contains('active')) {
+    if (!isClickInsideCart && !isClickInsideCartToggle && !isEmptyCartButton && !isSendButton && !isRemoveIcon && cartContainer.classList.contains('active')) {
+      // Only remove 'active' if clicked outside of cart and not on the remove-icon
       cartContainer.classList.remove('active');
     }
   });
+  
   
   
   
