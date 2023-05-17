@@ -1,35 +1,117 @@
 document.addEventListener('DOMContentLoaded', function () {
+  let containers = document.querySelectorAll('.product-container');
+  for(let i = 0; i < containers.length; i++) {
+      if(i % 2 !== 0) {
+          containers[i].style.backgroundColor = 'rgba(51, 51, 51, 0.5';
+          containers[i].style.borderRadius = '5px';
+      }
+  }
   const menuToggle = document.getElementById('menu-toggle');
   const sideMenu = document.createElement('div');
   sideMenu.classList.add('side-menu');
-
+  
   // Hozzáadja a menüpontokat a sideMenu-hez
   sideMenu.innerHTML += '<h1>Menü</h1>';
-
+  
   const menuItems = document.querySelectorAll('h2');
   const fragment = new DocumentFragment();
 
+
+
+ 
   menuItems.forEach((item, index) => {
+    const menuItemWrapper = document.createElement('div');
+    menuItemWrapper.classList.add('menu-item-wrapper');
+    const subMenuItemWrapper = document.createElement('div');
+    subMenuItemWrapper.className = 'submenu-item-wrapper'
+  
     const menuItem = document.createElement('a');
+    
+    
+    if (index < 3) {
+      const menuItemArrow = document.createElement('img');
+      menuItemArrow.src ="images/arrow.png";
+      menuItemWrapper.appendChild(menuItemArrow);
+  
+      let toggle = true;  // Egy változó, ami minden kattintásnál megfordul
+  
+      menuItemArrow.addEventListener('click', function(event) {
+        // Megkeressük a submenu-itemeket a fragmentben
+        const subMenuItemWrapper = menuItemWrapper.querySelectorAll('.submenu-item-wrapper');
+      
+        // Végigmegyünk mindegyiken, és beállítjuk a display tulajdonságukat 'block'-ra vagy 'none'-ra, a toggle állapotától függően
+        subMenuItemWrapper.forEach(function(subMenuItemWrapper) {
+          if (toggle) {
+            subMenuItemWrapper.style.display = 'block';
+          } else {
+            subMenuItemWrapper.style.display = 'none';
+          }
+        });
+      
+        toggle = !toggle;  // Megfordítjuk a toggle állapotát minden kattintásnál
+      });
+    }
+  
+    
     menuItem.innerHTML = item.innerHTML;
+    menuItem.classList.add('menu-item');
     menuItem.href = `#section${index}`;
+  
     menuItem.addEventListener('click', function (event) {
       event.preventDefault();
       sideMenu.classList.remove('active');
       console.log('running');
   
       const section = document.getElementById(`section${index}`);
-      const headerHeight = 130; // Állítsd be a fejléc magasságát (pl. 50 pixel)
+      const headerHeight = 130;
   
-      // Görgetés a szakaszhoz a képernyő tetejétől kivonva a fejléc magasságát
       window.scrollTo({
         top: section.offsetTop - headerHeight,
         behavior: 'smooth'
       });
     });
   
-    fragment.appendChild(menuItem);
+    menuItemWrapper.appendChild(menuItem);
   
+    fragment.appendChild(menuItemWrapper);
+
+   
+    
+    const subMenuItems = item.nextElementSibling.querySelectorAll('h3');
+  
+
+      subMenuItems.forEach((subItem, subIndex) => {
+      const subMenuItem = document.createElement('a');
+      subMenuItem.innerHTML = subItem.innerHTML;
+      subMenuItem.classList.add('submenu-item');
+      subMenuItem.href = `#subsection${index}${subIndex}`; // Módosítva a helyes subsection ID-hez
+      subMenuItem.addEventListener('click', function (event) {
+        event.preventDefault();
+        sideMenu.classList.remove('active');
+        console.log('running');
+
+        const subSection = document.getElementById(`subsection${index}${subIndex}`); // Módosítva a helyes subsection ID-hez
+        const headerHeight = 130;
+
+        // Görgetés a szakaszhoz a képernyő tetejétől kivonva a fejléc magasságát
+        window.scrollTo({
+          top: subSection.offsetTop - headerHeight,
+          behavior: 'smooth'
+        });
+      });
+
+    
+     
+
+      subMenuItemWrapper.appendChild(subMenuItem);
+      menuItemWrapper.appendChild(subMenuItemWrapper);
+    });
+    
+
+
+
+
+    
     const hr = document.createElement('hr');
     fragment.appendChild(hr);
   });
@@ -43,11 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
   
-  
-  
-
- 
-
   document.body.appendChild(sideMenu);
 
  
